@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MVC_DEPI_Project.Models.Entities.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="~/css/styles.css">
+    <link href="~/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+</head>
+
+<!-- Categories Start -->
+<div class="container-fluid pt-5">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-light  pr-3">Categories</span></h2>
+    <div class="row px-xl-5 pb-3">
+
+
+
+      
+
+
+
+        @foreach (var item in Model) {
+            <div class="card m-2" style="width: 18rem;">
+                <div class="my-2">
+                <a asp-action="Delete" asp-route-id="@item.Id" class="border border-2 p-2 bg-danger fw-bold">X</a>
+                </div>
+                <img class="card-img-top" src="@item.ImagePath" alt="@item.Name" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <div class="flex-fill pl-3">
+                        <h6><a class="text-decoration-none" asp-controller="Home" asp-action="Shop" a> @Html.DisplayFor(modelItem => item.Name) </a></h6>
+                        <small class="text-body me-3">100 Products</small>
+                        
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="border border-2 p-2 ms-5 bg-info text-light">Edit</a>
+
+                    </div>
+                    
+                </div>
+            </div>
+        }
+
+                       
+               
+          
+        
+<!-- Categories End -->
+        <div class="offset-lg-3 col-lg-8 col-md-8 col-sm-8 pb-1 d-flex justify-content-end my-5">
+            <a asp-action="Create" class="btn btn-info Creation">Create</a>
+        </div>

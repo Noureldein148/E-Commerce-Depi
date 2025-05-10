@@ -1,0 +1,84 @@
+﻿@model MVC_DEPI_Project.Models.Entities.Product
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/styles.css">
+    <link href="~/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+</head>
+
+<h1>Product Details</h1>
+
+<!-- Shop Detail Start -->
+<div class="container-fluid pb-5">
+    <div class="row px-xl-5">
+
+        <!-- Image Section -->
+        <div class="col-lg-5 mb-30">
+            <div class="bg-light text-center p-3">
+                @if (!string.IsNullOrEmpty(Model.ImagePath))
+                {
+                    <img class="img-fluid" src="@Model.ImagePath" alt="@Model.Name" style="max-height: 400px;" />
+                }
+                else
+                {
+                    <img class="img-fluid" src="~/images/products/default.png" alt="No Image" style="max-height: 400px;" />
+                }
+            </div>
+        </div>
+
+        <!-- Product Details Section -->
+        <div class="col-lg-7 h-auto mb-30 mt-5">
+            <div class="h-100 bg-light p-30">
+                <h3>@Html.DisplayFor(model => model.Name)</h3>
+
+                <h3 class="font-weight-semi-bold mb-4">$@Html.DisplayFor(model => model.Price)</h3>
+
+                <p class="mb-4">
+                    @Html.DisplayFor(model => model.Description)
+                </p>
+
+                <div class="d-flex mb-3">
+                    <strong class="text-dark mr-3">Sizes:</strong>
+                    <form>
+                        @foreach (var size in new[] { "XS", "S", "M", "L", "XL" })
+                        {
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="size-@size" name="size">
+                                <label class="custom-control-label" for="size-@size">@size</label>
+                            </div>
+                        }
+                    </form>
+                </div>
+
+                <div class="d-flex mb-4">
+                    <strong class="text-dark mr-3">Colors:</strong>
+                    <form>
+                        @foreach (var color in new[] { "Black", "White", "Red", "Blue", "Green" })
+                        {
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="color-@color" name="color">
+                                <label class="custom-control-label" for="color-@color">@color</label>
+                            </div>
+                        }
+                    </form>
+                </div>
+
+                <a class="border border-2 p-2 bg-info text-light mb-2" asp-action="Edit" asp-route-id="@Model?.ID">Edit</a>
+                <a class="btn bg-info text-light ms-2" asp-action="Index">Back to List</a>
+
+                <div>
+                    <a class="btn btn-info mt-2" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model?.ID">Add To Cart</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Shop Detail End -->
+
+

@@ -1,0 +1,20 @@
+# Ignore Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Ignore build results
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Ignore Copilot, DB, and layout junk
+CopilotIndices/
+FileContentIndex/
+v17/
+*.db
+*.db-shm
+*.db-wal
+*.wsuo
